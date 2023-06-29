@@ -13,23 +13,13 @@ const { Title } = Typography;
 const fbProvider = new firebase.auth.FacebookAuthProvider()
 
 const Login = () => {
-  const navigate = useNavigate();
 
 
     const handleLogin = () =>{
         auth.signInWithPopup(fbProvider)
     }
 
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user) {
-          // Nếu đã xác thực thành công, điều hướng đến trang /home
-          navigate('/home');
-        }
-      });
-  
-      return () => unsubscribe();
-    }, [navigate]);
+    
   return (
     <div>
     <Row justify='center' style={{ height: 800 }}>
