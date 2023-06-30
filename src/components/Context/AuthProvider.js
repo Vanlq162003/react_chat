@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
                 
                 // Nếu đã xác thực thành công, điều hướng đến trang /home
                 navigate('/home');
+                
             }else {
                 setIsLoading(false);
                 navigate('/');

@@ -1,9 +1,10 @@
 import React  from 'react'
 import { Row, Col, Button, Typography } from 'antd';
-import { auth } from '../../firebase/config';
+import { auth, db } from '../../firebase/config';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import firebase from '../../firebase/config';
+import { addDocument } from '../../firebase/services';
 
 
 
@@ -15,8 +16,19 @@ const fbProvider = new firebase.auth.FacebookAuthProvider()
 const Login = () => {
 
 
-    const handleLogin = () =>{
-        auth.signInWithPopup(fbProvider)
+    const handleLogin = async () =>{
+      const {additionalUserInfo , user} = await  auth.signInWithPopup(fbProvider)
+
+      // console.log(additionalUserInfo.isNewUser)
+      if(additionalUserInfo.isNewUser == true){
+        addDocument('users' , {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.displayName,
+          providerId: additionalUserInfo.providerId
+        })
+      }
     }
 
     
