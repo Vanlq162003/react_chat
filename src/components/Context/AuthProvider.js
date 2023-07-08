@@ -22,16 +22,16 @@ const AuthProvider = ({ children }) => {
 
                 setUser({ displayName, email, uid, photoURL, });
                 setIsLoading(false);
-                
+
                 // Nếu đã xác thực thành công, điều hướng đến trang /home
                 navigate('/home');
-                
-            }else {
+
+            } else {
                 setIsLoading(false);
                 navigate('/');
-              }
+            }
         });
-       
+
 
         return () => unsubscribe();
     }, []);

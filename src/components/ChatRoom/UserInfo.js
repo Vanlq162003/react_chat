@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, Avatar, Typography } from 'antd';
 import styled from 'styled-components';
 
@@ -21,27 +21,36 @@ const WrapperStyled = styled.div`
 `;
 
 export default function UserInfo() {
-  useEffect(()=>{
-    db.collection('users').onSnapshot((snapShot)=>{
-      const data = snapShot.docs.map(doc=>({
-        ...doc.data(),
-        id:doc.id
-      }))
-      console.log({data,snapShot, docs:snapShot.docs})
-    })
-  })
+  // useEffect(() => {
+  //   db.collection('users').onSnapshot((snapShot) => {
+  //     const data = snapShot.docs.map(doc => ({
+  //       ...doc.data(),
+  //       id: doc.id
+  //     }))
+  //     console.log({ data, snapShot, docs: snapShot.docs })
+  //   })
+  // })
+  
+
+  const {user:{
+    displayName,
+    photoURL
+  }} = useContext(AuthContext)
+  // console.log(displayName)
+
+  
 
 
   return (
     <WrapperStyled>
       <div>
-        <Avatar >
-          A
+        <Avatar src={photoURL} >
+          
         </Avatar>
-        <Typography.Text className='username'></Typography.Text>
+        <Typography.Text className='username'>{displayName}</Typography.Text>
       </div>
       <Button
-        onClick={()=>auth.signOut()}
+        onClick={() => auth.signOut()}
       >
         Đăng xuất
       </Button>
