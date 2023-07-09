@@ -22,6 +22,19 @@ const WrapperStyled = styled.div`
   }
 `;
 
+function formatDate(seconds) {
+  let formattedDate = '';
+
+  if (seconds) {
+    formattedDate = formatRelative(new Date(seconds * 1000), new Date());
+
+    formattedDate =
+      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  }
+
+  return formattedDate;
+}
+
 
 
 export default function Message({ text, displayName, createdAt, photoURL }) {
@@ -29,15 +42,15 @@ export default function Message({ text, displayName, createdAt, photoURL }) {
     <WrapperStyled>
       <div>
         <Avatar size='small' >
-          
+        {photoURL ? '' : displayName?.charAt(0)?.toUpperCase()}
         </Avatar>
-        <Typography.Text className='author'>aaaaa</Typography.Text>
+        <Typography.Text className='author'>{displayName}</Typography.Text>
         <Typography.Text className='date'>
-          aaaaa
+          {formatDate(createdAt?.seconds)}
         </Typography.Text>
       </div>
       <div>
-        <Typography.Text className='content'>bbbbbb</Typography.Text>
+        <Typography.Text className='content'>{text}</Typography.Text>
       </div>
     </WrapperStyled>
   );
