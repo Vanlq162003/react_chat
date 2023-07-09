@@ -34,6 +34,7 @@ export default function RoomList() {
   const { rooms, setIsAddRoomVisible, setSelectedRoomId } =
     useContext(AppContext);
 
+
   const handleAddRoom = () => {
     setIsAddRoomVisible(true);
   };

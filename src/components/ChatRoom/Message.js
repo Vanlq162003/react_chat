@@ -41,12 +41,12 @@ export default function Message({ text, displayName, createdAt, photoURL }) {
   return (
     <WrapperStyled>
       <div>
-        <Avatar size='small' >
-        {photoURL ? '' : displayName?.charAt(0)?.toUpperCase()}
+        <Avatar size='small' src={photoURL}>
+          {photoURL ? '' : displayName?.charAt(0)?.toUpperCase()}
         </Avatar>
         <Typography.Text className='author'>{displayName}</Typography.Text>
         <Typography.Text className='date'>
-          {formatDate(createdAt?.seconds)}
+          {createdAt}
         </Typography.Text>
       </div>
       <div>

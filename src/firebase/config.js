@@ -30,9 +30,10 @@ firebase.analytics(app);
 const auth = firebase.auth()
 const db = firebase.firestore();
 
-auth.useEmulator("http://localhost:9099")
 if(window.location.hostname==='localhost'){
   db.useEmulator('localhost', '8080')
+  auth.useEmulator("http://localhost:9099")
+
 }
 
 export {auth , db}

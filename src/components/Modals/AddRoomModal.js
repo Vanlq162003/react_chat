@@ -13,7 +13,7 @@ const AddRoomModal = () => {
         // handle logic
         // add new room to firestore
         addDocument('rooms', { ...form.getFieldsValue(), members: [uid] });
-        console.log({ formData: form.getFieldValue() })
+        // console.log({ formData: form.getFieldValue() })
 
         // reset form value
         form.resetFields();

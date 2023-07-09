@@ -115,6 +115,8 @@ export default function ChatWindow() {
 
   const messages = useFirestore('messages', condition);
 
+  
+
   useEffect(() => {
     // scroll to bottom after message changed
     if (messageListRef?.current) {
@@ -165,6 +167,7 @@ export default function ChatWindow() {
                   displayName={mes.displayName}
                   createdAt={mes.createdAt}
                 />
+                
               ))}
             </MessageListStyled>
             <FormStyled form={form}>
